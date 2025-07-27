@@ -22,7 +22,7 @@ const Home = () => {
             </h1>
             <p className="hero-description">
               Get instant medical insights, disease predictions, and personalized health advice powered by advanced AI
-              technology. Your health, simplified.
+              technology. Simplifying your health.
             </p>
           </div>
 
@@ -62,10 +62,7 @@ const Home = () => {
           <div className="about-content">
             <div className="about-text scroll-reveal fade-up">
               <p>
-                HomeDoc AI is your trusted digital health companion, leveraging cutting-edge artificial intelligence to
-                provide personalized medical insights and guidance. Our platform combines advanced machine learning
-                algorithms with comprehensive medical databases to offer accurate health predictions and
-                recommendations.
+                HomeDoc AI is your trusted digital health companion. We leverage advanced artificial intelligence and provide personalized medical insights and recommendations. Our platform uses the latest machine learning technology formulated with complete medical references to provide accurate health predictions and recommendations.
               </p>
               <div className="features-grid">
                 <div className="feature-item scroll-reveal fade-left">

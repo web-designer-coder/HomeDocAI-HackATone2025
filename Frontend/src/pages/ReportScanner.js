@@ -302,9 +302,7 @@ const ReportScanner = () => {
                   <div>
                     <h4>Important Disclaimer</h4>
                     <p>
-                      This AI analysis is for informational purposes only and should not replace
-                      professional medical advice. Always consult with qualified healthcare providers
-                      for proper diagnosis and treatment.
+                      This AI analysis is only for informational purposes and is not a medical recommendation - please consult your qualified healthcare professionals for an accurate diagnosis and treatment.
                     </p>
                   </div>
                 </div>

@@ -12,7 +12,6 @@ const Three3DBackground = () => {
   useEffect(() => {
     if (!mountRef.current) return
 
-    // Scene setup
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
@@ -26,34 +25,31 @@ const Three3DBackground = () => {
     sceneRef.current = scene
     rendererRef.current = renderer
 
-    // Lighting
     const ambientLight = new THREE.AmbientLight(0x404040, 0.6)
     scene.add(ambientLight)
 
-    const directionalLight = new THREE.DirectionalLight(0x8b5cf6, 0.8) // Purple light
+    const directionalLight = new THREE.DirectionalLight(0x8b5cf6, 0.8)
     directionalLight.position.set(10, 10, 5)
     directionalLight.castShadow = true
     scene.add(directionalLight)
 
-    const pointLight1 = new THREE.PointLight(0x06b6d4, 0.6, 100) // Cyan light
+    const pointLight1 = new THREE.PointLight(0x06b6d4, 0.6, 100) 
     pointLight1.position.set(-20, 10, 10)
     scene.add(pointLight1)
 
-    const pointLight2 = new THREE.PointLight(0x10b981, 0.5, 100) // Green light
+    const pointLight2 = new THREE.PointLight(0x10b981, 0.5, 100) 
     pointLight2.position.set(20, -10, 5)
     scene.add(pointLight2)
 
-    // Medical-themed geometries
     const geometries = []
     const materials = []
     const meshes = []
 
-    // DNA Helix
     const helixGeometry = new THREE.CylinderGeometry(0.1, 0.1, 10, 8);
     const helixMaterial = new THREE.MeshPhongMaterial({
-      color: 0xff0000, // Red color
+      color: 0xff0000,
       transparent: true,
-      opacity: 0.15, // Still semi-transparent
+      opacity: 0.15,
       shininess: 100,
     });
 
@@ -70,11 +66,10 @@ const Three3DBackground = () => {
     materials.push(helixMaterial)
     meshes.push(helix1, helix2)
 
-    // Floating Pills
     for (let i = 0; i < 20; i++) {
       const pillGeometry = new THREE.CapsuleGeometry(0.3, 1.5, 4, 8)
       const pillMaterial = new THREE.MeshPhongMaterial({
-        color: Math.random() > 0.5 ? 0x06b6d4 : 0xff0000, // Cyan and purple
+        color: Math.random() > 0.5 ? 0x06b6d4 : 0xff0000,
         transparent: true,
         opacity: 0.7,
         shininess: 100,
@@ -90,11 +85,10 @@ const Three3DBackground = () => {
       meshes.push(pill)
     }
 
-    // Molecular Structures
     for (let i = 0; i < 15; i++) {
       const sphereGeometry = new THREE.SphereGeometry(0.5, 16, 16)
       const sphereMaterial = new THREE.MeshPhongMaterial({
-        color: 0x10b981, // Emerald green
+        color: 0x10b981,
         transparent: true,
         opacity: 0.6,
         shininess: 100,
@@ -109,11 +103,10 @@ const Three3DBackground = () => {
       meshes.push(sphere)
     }
 
-    // Heart Beat Rings
     for (let i = 0; i < 8; i++) {
       const ringGeometry = new THREE.RingGeometry(2, 2.5, 32)
       const ringMaterial = new THREE.MeshBasicMaterial({
-        color: 0xf59e0b, // Amber color
+        color: 0xf59e0b,
         transparent: true,
         opacity: 0.25,
         side: THREE.DoubleSide,
@@ -130,7 +123,6 @@ const Three3DBackground = () => {
       meshes.push(ring)
     }
 
-    // Stethoscope-like Curves
     const curvePoints = []
     for (let i = 0; i < 100; i++) {
       const angle = (i / 100) * Math.PI * 4
@@ -140,7 +132,7 @@ const Three3DBackground = () => {
     const curve = new THREE.CatmullRomCurve3(curvePoints)
     const tubeGeometry = new THREE.TubeGeometry(curve, 100, 0.1, 8, false)
     const tubeMaterial = new THREE.MeshPhongMaterial({
-      color: 0x06b6d4, // Cyan color
+      color: 0x06b6d4,
       transparent: true,
       opacity: 0.6,
     })
@@ -152,7 +144,6 @@ const Three3DBackground = () => {
     materials.push(tubeMaterial)
     meshes.push(tube)
 
-    // Particle System
     const particleCount = 1000
     const particleGeometry = new THREE.BufferGeometry()
     const particlePositions = new Float32Array(particleCount * 3)
@@ -164,7 +155,7 @@ const Three3DBackground = () => {
       particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 100
 
       const color = new THREE.Color()
-      color.setHSL(0.5 + Math.random() * 0.3, 0.7, 0.6 + Math.random() * 0.2) // Cooler colors
+      color.setHSL(0.5 + Math.random() * 0.3, 0.7, 0.6 + Math.random() * 0.2)
       particleColors[i * 3] = color.r
       particleColors[i * 3 + 1] = color.g
       particleColors[i * 3 + 2] = color.b
@@ -186,11 +177,9 @@ const Three3DBackground = () => {
     geometries.push(particleGeometry)
     materials.push(particleMaterial)
 
-    // Camera position
     camera.position.set(0, 5, 20)
     camera.lookAt(0, 0, 0)
 
-    // Mouse interaction
     const mouse = new THREE.Vector2()
     const onMouseMove = (event) => {
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1
@@ -198,18 +187,15 @@ const Three3DBackground = () => {
     }
     window.addEventListener("mousemove", onMouseMove)
 
-    // Animation loop
     const animate = () => {
       frameRef.current = requestAnimationFrame(animate)
 
       const time = Date.now() * 0.001
 
-      // Rotate DNA helix
       helix1.rotation.y = time * 0.5
       helix2.rotation.y = time * 0.5
       helix2.rotation.x = time * 0.3
 
-      // Animate pills
       meshes.forEach((mesh, index) => {
         if (mesh.geometry.type === "CapsuleGeometry") {
           mesh.rotation.x += 0.01
@@ -218,7 +204,6 @@ const Three3DBackground = () => {
         }
       })
 
-      // Animate molecules
       meshes.forEach((mesh, index) => {
         if (mesh.geometry.type === "SphereGeometry") {
           mesh.position.y += Math.sin(time * 2 + index) * 0.005
@@ -227,7 +212,6 @@ const Three3DBackground = () => {
         }
       })
 
-      // Animate rings (heartbeat effect)
       meshes.forEach((mesh, index) => {
         if (mesh.geometry.type === "RingGeometry") {
           const scale = 1 + Math.sin(time * 3 + index) * 0.2
@@ -236,11 +220,9 @@ const Three3DBackground = () => {
         }
       })
 
-      // Animate tube
       tube.rotation.y = time * 0.2
       tube.position.y = Math.sin(time) * 2
 
-      // Animate particles
       const positions = particles.geometry.attributes.position.array
       for (let i = 0; i < particleCount; i++) {
         positions[i * 3 + 1] += Math.sin(time + i * 0.01) * 0.01
@@ -248,7 +230,6 @@ const Three3DBackground = () => {
       particles.geometry.attributes.position.needsUpdate = true
       particles.rotation.y = time * 0.1
 
-      // Camera movement based on mouse
       camera.position.x += (mouse.x * 5 - camera.position.x) * 0.05
       camera.position.y += (-mouse.y * 5 - camera.position.y) * 0.05
       camera.lookAt(0, 0, 0)
@@ -258,7 +239,6 @@ const Three3DBackground = () => {
 
     animate()
 
-    // Handle resize
     const handleResize = () => {
       if (!camera || !renderer) return
       camera.aspect = window.innerWidth / window.innerHeight
@@ -267,7 +247,6 @@ const Three3DBackground = () => {
     }
     window.addEventListener("resize", handleResize)
 
-    // Cleanup
     return () => {
       window.removeEventListener("mousemove", onMouseMove)
       window.removeEventListener("resize", handleResize)
@@ -276,7 +255,6 @@ const Three3DBackground = () => {
         cancelAnimationFrame(frameRef.current)
       }
 
-      // Dispose of geometries and materials
       geometries.forEach((geometry) => geometry.dispose())
       materials.forEach((material) => material.dispose())
 

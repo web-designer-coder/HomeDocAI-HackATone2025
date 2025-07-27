@@ -22,7 +22,6 @@ const Footer = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // Replace with your own EmailJS credentials
     const SERVICE_ID = "service_kmjaiki"
     const TEMPLATE_ID = "template_f3x9e6o"
     const USER_ID = "p0UfgKtbRqc-ICVJL"
@@ -94,10 +93,10 @@ const Footer = () => {
             <li><a href="/report-scanner">Report Scanner</a></li>
             <li><a href="/chatbot">AI Chat</a></li>
           </ul>
-          <div className="contact-info">
+          {/* <div className="contact-info">
             <h4>Get in Touch</h4>
             <p>📧 support@homedocai.com</p>
-          </div>
+          </div> */}
         </div>
       </div>
 

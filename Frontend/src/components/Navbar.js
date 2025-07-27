@@ -25,7 +25,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Close profile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!event.target.closest(".user-profile-container")) {
@@ -128,23 +127,6 @@ const Navbar = () => {
                     </div>
                   </div>
                   <div className="profile-dropdown-divider"></div>
-                  {/* <button className="profile-dropdown-item" onClick={navigateToProfile}>
-                    <i className="fas fa-user"></i>
-                    My Profile
-                  </button> */}
-                  {/* <button className="profile-dropdown-item" onClick={() => navigate("/dashboard")}>
-                    <i className="fas fa-tachometer-alt"></i>
-                    Dashboard
-                  </button> */}
-                  {/* <button className="profile-dropdown-item" onClick={() => navigate("/settings")}>
-                    <i className="fas fa-cog"></i>
-                    Settings
-                  </button> */}
-                  {/* <div className="profile-dropdown-divider"></div>
-                  <button className="profile-dropdown-item logout-item" onClick={handleLogout}>
-                    <i className="fas fa-sign-out-alt"></i>
-                    Sign Out
-                  </button> */}
                   <button className="profile-dropdown-item logout-item" onClick={handleLogout}>
                     <i className="fas fa-sign-out-alt"></i>
                     Sign Out

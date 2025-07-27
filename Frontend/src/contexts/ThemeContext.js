@@ -16,7 +16,6 @@ export const ThemeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(() => {
-    // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem("theme")
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
 
@@ -28,7 +27,6 @@ export const ThemeProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    // Apply theme to document
     if (isDarkMode) {
       document.documentElement.classList.add("dark")
       document.body.classList.add("dark")
@@ -37,7 +35,6 @@ export const ThemeProvider = ({ children }) => {
       document.body.classList.remove("dark")
     }
 
-    // Save theme preference
     localStorage.setItem("theme", isDarkMode ? "dark" : "light")
   }, [isDarkMode])
 

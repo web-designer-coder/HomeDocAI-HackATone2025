@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom"; // ✅ Keep this one
+import { useNavigate } from "react-router-dom";
 
 import "./Auth.css"
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -31,7 +31,6 @@ const SignUp = () => {
       [name]: type === "checkbox" ? checked : value,
     }))
 
-    // Calculate password strength
     if (name === "password") {
       let strength = 0
       if (value.length >= 8) strength++
@@ -48,7 +47,6 @@ const SignUp = () => {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-      // Optional: Save to Firestore if first-time login
       await setDoc(doc(db, "users", user.uid), {
         firstName: user.displayName?.split(" ")[0] || "",
         lastName: user.displayName?.split(" ")[1] || "",
@@ -56,7 +54,7 @@ const SignUp = () => {
         createdAt: serverTimestamp(),
       }, { merge: true });
 
-      navigate("/profile"); // or home/dashboard
+      navigate("/profile");
 
     } catch (error) {
       console.error("Google Sign-In error:", error.message);
@@ -96,7 +94,7 @@ const SignUp = () => {
       });
 
       alert("✅ Account created successfully!");
-      navigate("/signin"); // ✅ Navigate directly (just like SignIn.js)
+      navigate("/signin");
 
     } catch (error) {
       console.error("Signup error:", error.message);

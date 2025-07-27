@@ -8,7 +8,7 @@ import Predictor from "./pages/Predictor";
 import ReportScanner from "./pages/ReportScanner";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import UserProfile from "./components/UserProfile"; // ✅ NEW
+import UserProfile from "./components/UserProfile";
 import Footer from "./components/Footer";
 import "./App.css";
 function App() {
@@ -26,7 +26,7 @@ function App() {
                 <Route path="/report-scanner" element={<ReportScanner />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
-                <Route path="/profile" element={<UserProfile />} /> {/* ✅ NEW */}
+                <Route path="/profile" element={<UserProfile />} />
               </Routes>
             </main>
             <Footer />

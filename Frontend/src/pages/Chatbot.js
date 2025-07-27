@@ -9,7 +9,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hello! I'm your HomeDoc AI assistant. I can help you with home remedies, analyze medical reports, and answer health-related questions. How can I assist you today?",
+      text: "Hello! I am your HomeDoc AI assistant. I can help with home remedies, analyzing medical reports, and any other health question you may have. How can I help you today?",
       sender: "bot",
       timestamp: new Date(),
     },
@@ -33,7 +33,6 @@ const Chatbot = () => {
         });
         setAvailableVoices(voices);
       } else {
-        // Retry after short delay if voices not ready yet
         setTimeout(loadVoices, 200);
       }
     };
@@ -76,7 +75,6 @@ const Chatbot = () => {
       window.speechSynthesis.speak(utterance);
     };
 
-    // Voice map
     const voiceMap = [
       { regex: /[ऀ-ॿ]/, lang: "hi-IN", names: ["Google हिन्दी"] },
       { regex: /[a-zA-Z]/, lang: "en-US", names: ["Google US English", "Google UK English Female", "zira", "emma"] },
@@ -167,7 +165,7 @@ const Chatbot = () => {
         },
       ]);
 
-      setInputText(""); // ✅ Clear input after messages are updated
+      setInputText(""); 
 
 
       const user = auth.currentUser;
@@ -221,7 +219,7 @@ const Chatbot = () => {
       setTimeout(() => {
         const analysisResponse = {
           id: messages.length + 2,
-          text: "I've received your file. Based on the document type, I can provide general insights. For blood reports, I can explain normal ranges and highlight any values that might need attention. For imaging reports, I can help explain medical terminology. Please note that this is for informational purposes only - always consult your healthcare provider for professional medical advice.",
+          text: "I have received your report. Based on report type, I can give you general information. I can explain blood report normal ranges and whether you should look into values. I can help you explain medical terminology in imaging reports. This is for information only - please consult your healthcare provider for medical advice when appropriate.",
           sender: "bot",
           timestamp: new Date(),
         }
